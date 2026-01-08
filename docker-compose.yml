@@ -122,7 +122,6 @@ services:
     networks:
       - chat-network
 
-
 # 볼륨 정의
 volumes:
   postgres_data:
