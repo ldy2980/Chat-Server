@@ -14,10 +14,10 @@ dependencyManagement {
 
 dependencies {
     // 모든 하위 모듈 포함 (조립자 역할)
-//    implementation(project(":chat-api"))
-//    implementation(project(":chat-domain"))
-//    implementation(project(":chat-persistence"))
-//    implementation(project(":chat-websocket"))
+    implementation(project(":chat-api"))
+    implementation(project(":chat-domain"))
+    implementation(project(":chat-persistence"))
+    implementation(project(":chat-websocket"))
 
     // 메인 애플리케이션 실행에 필요한 의존성만
     implementation("org.springframework.boot:spring-boot-starter")

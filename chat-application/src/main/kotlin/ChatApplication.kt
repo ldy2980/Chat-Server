@@ -8,7 +8,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @SpringBootApplication(
     scanBasePackages = [
-        "com.chat.application"
+        "com.chat.application",
+        "com.chat.domain",
+        "com.chat.persistence",
+        "com.chat.api",
+        "com.chat.websocket"
     // TODO -> 모듈이 추가됨에 따라 계속 추가
     /*
     * com.chat.api          // REST API
