@@ -61,8 +61,6 @@ class ChatWebSocketHandler(
             logger.warn("exception while processing message", e)
             sendErrorMessage(session, "메시지 처리 에러")
         }
-
-        TODO("Not yet implemented")
     }
 
     override fun handleTransportError(
@@ -92,7 +90,6 @@ class ChatWebSocketHandler(
             sessionManager.removeSession(userId, session)
             logger.info("Session removed for $userId")
         }
-        TODO("Not yet implemented")
     }
 
     override fun supportsPartialMessages(): Boolean = false

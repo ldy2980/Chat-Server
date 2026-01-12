@@ -18,6 +18,5 @@ class WebSocketConfig(
         registry.addHandler(chatWebSocketHandler, "/ws/chat")
             .addInterceptors(webSocketHandshakeInterceptor)
             .setAllowedOrigins("*")     // production이라면 도메인 고려
-        TODO("Not yet implemented")
     }
 }
