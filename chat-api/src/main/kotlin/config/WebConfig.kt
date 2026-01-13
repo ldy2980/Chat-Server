@@ -9,9 +9,10 @@ class WebConfig : WebMvcConfigurer {
 
     override fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**") // 모든 경로에 대해
-            .allowedOrigins("*") // 모든 오리진 허용 (개발용)
+            .allowedOrigins("http://localhost:3000") // 모든 오리진 허용 (개발용)
             .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
             .allowedHeaders("*")
+            .allowCredentials(true)
             .maxAge(3600)
     }
 }

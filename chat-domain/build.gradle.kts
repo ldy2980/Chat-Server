@@ -2,8 +2,15 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
     kotlin("plugin.jpa")
-    id("org.springframework.boot") version "3.3.4"
     id("io.spring.dependency-management")
+}
+
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+    enabled = false
+}
+
+tasks.withType<Jar> {
+    enabled = true
 }
 
 dependencyManagement {

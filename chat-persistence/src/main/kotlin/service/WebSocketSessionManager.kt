@@ -71,13 +71,14 @@ class WebSocketSessionManager(
         val serverId = redisMessageBroker.getSeverId()
 
         val serverRoomKey = "${serverRoomsKeyPrefix}$serverId"
-        redisTemplate.opsForSet().add(serverRoomKey, roomId.toString())
 
         val wasAlreadySubscribed = redisTemplate.opsForSet().isMember(serverRoomKey, roomId.toString()) == true
 
         if(!wasAlreadySubscribed) {
             redisMessageBroker.subscribeToRoom(roomId)
         }
+
+        redisTemplate.opsForSet().add(serverRoomKey, roomId.toString())
 
         logger.info("Joined $roomId for $userId $serverId to server $serverRoomKey")
     }
