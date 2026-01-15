@@ -23,5 +23,4 @@ interface ChatRoomRepository : JpaRepository<ChatRoom, Long> {
 
     // 이름으로 채팅방 검색 (대소문자 무시, 활성 채팅방만)
     fun findByNameContainingIgnoreCaseAndIsActiveTrueOrderByCreatedAtDesc(name: String): List<ChatRoom>
-    fun existsByChatRoomIdAndUserIdAndIsActiveTrue(userId: Long, isActive: Boolean): Boolean
 }

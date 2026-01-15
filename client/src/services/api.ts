@@ -17,7 +17,7 @@ import {
 
 // Axios 기본 설정
 const api = axios.create({
-  baseURL: 'http://localhost/api',
+  baseURL: '/api',
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',

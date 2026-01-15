@@ -37,8 +37,8 @@ class ChatServiceImpl(
     private val logger = LoggerFactory.getLogger(ChatServiceImpl::class.java)
 
 
-    @Cacheable(value = ["chatRooms"], key = "#chatRoom.id")
-    private fun chatRoomToDto(chatRoom: ChatRoom): ChatRoomDto {
+//    @Cacheable(value = ["chatRooms"], key = "#chatRoom.id")
+    fun chatRoomToDto(chatRoom: ChatRoom): ChatRoomDto {
         val memberCount = chatRoomMemberRepository.countActiveMembersInRoom(chatRoom.id).toInt()
         val lastMessage = messageRepository.findLatestMessage(chatRoom.id)?.let { messageToDto(it) }
 
@@ -84,8 +84,8 @@ class ChatServiceImpl(
         )
     }
 
-    @Cacheable(value = ["users"], key = "#user.id")
-    private fun userToDto(user: User): UserDto {
+//    @Cacheable(value = ["users"], key = "#user.id")
+    fun userToDto(user: User): UserDto {
         return UserDto(
             id = user.id,
             username = user.username,
@@ -303,7 +303,7 @@ class ChatServiceImpl(
 
         val message = Message(
             content = request.content,
-            type = request.type ?: MessageType.TEXT,
+            type = request.type,
             chatRoom = chatRoom,
             sender = sender,
             sequenceNumber = sequenceNumber
