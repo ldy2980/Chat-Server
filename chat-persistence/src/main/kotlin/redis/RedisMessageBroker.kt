@@ -10,6 +10,7 @@ import org.springframework.data.redis.connection.MessageListener
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.listener.ChannelTopic
 import org.springframework.data.redis.listener.RedisMessageListenerContainer
+import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 import java.util.concurrent.ConcurrentHashMap
@@ -32,18 +33,18 @@ class RedisMessageBroker(
     fun initialize() {
         logger.info("Initializing RedisMessageListenerContainer")
 
-        Thread {
-            try {
-                Thread.sleep(30000)
-                cleanUpProcessedMessages()
-            } catch (e: Exception) {
-                logger.error("Error in initializing RedisMessageListenerContainer", e)
-            }
-        }.apply {
-            isDaemon = true
-            name = "redis-broker-cleanup"
-            start()
-        }
+//        Thread {
+//            try {
+//                Thread.sleep(30000)
+//                cleanUpProcessedMessages()
+//            } catch (e: Exception) {
+//                logger.error("Error in initializing RedisMessageListenerContainer", e)
+//            }
+//        }.apply {
+//            isDaemon = true
+//            name = "redis-broker-cleanup"
+//            start()
+//        }
     }
 
     @PreDestroy
@@ -123,7 +124,7 @@ class RedisMessageBroker(
 
             logger.info("Processed message $distributedMessage.id")
         } catch (e: Exception) {
-
+            logger.error("Failed to process redis message: ${e.message}", e)
         }
     }
 
@@ -131,6 +132,7 @@ class RedisMessageBroker(
         this.localMessageHandler = handler
     }
 
+    @Scheduled(fixedRate = 60000, initialDelay = 30000)
     private fun cleanUpProcessedMessages() {
         val now = System.currentTimeMillis()
         val expiredKeys = processedMessages.filter { (_, time) ->
