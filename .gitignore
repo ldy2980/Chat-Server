@@ -44,5 +44,5 @@ bin/
 ### Mac OS ###
 .DS_Store
 /client/node_modules/
-/client/package-lock.json
+#/client/package-lock.json
 /client/.env

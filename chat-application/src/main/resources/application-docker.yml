@@ -105,3 +105,6 @@ chat:
     default-ttl: 30m
     users-ttl: 1h
     messages-ttl: 5m
+
+cors:
+  origin: "http://localhost:3000"
